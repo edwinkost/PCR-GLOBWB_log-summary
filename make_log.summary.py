@@ -134,7 +134,7 @@ years = np.sort(precipitation.keys())
 for year in years:
 	text = str(year)+";"
 	for var in variable_list:
-		print var
+		#~ print var
 		value = vars()[str(var)][int(year)]
 		if var != variable_list[-1]: text += str(value)+";"
 		if var == variable_list[-1]:
