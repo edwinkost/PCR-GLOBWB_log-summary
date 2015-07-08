@@ -20,18 +20,17 @@ if len(sys.argv) > 2: txt_summary = sys.argv[2]
 
 # variables that will be reported
 variable_list = ['precipitation',\
-                 'infiltration',\
-                 'land_surface_runoff',\
+                 'groundwater_recharge',\
                  'total_water_demand',\
                  'irrigation_demand',\
-                 'non_irrigation_demand',\
+                 'livestock_demand',\
+                 'domestic_demand',\
+                 'industry_demand',\
                  'desalination_abstraction',\
                  'non_fossil_groundwater_abstraction',\
                  'fossil_groundwater_abstraction',\
-                 'surface_water_abstraction',\
-                 'groundwater_recharge',\
-                 'irrigation_water_use',\
-                 'non_irrigation_water_use']
+                 'surface_water_abstraction'
+                 ]
 
 # initiating dictionaries that will contain annual values
 # - the key for this dictionary is "year"
@@ -61,70 +60,55 @@ for i in range(len(lines)):
 			year = int(line.split(" ")[11])
 			precipitation[year] = float(line.split(" ")[13])
 
-		# identify annual infiltration
-		if "Accumulated infiltration" in line: 
-			year = int(line.split(" ")[11])
-			infiltration[year] = float(line.split(" ")[13])
-
 		# identify annual groundwater recharge
 		if "Accumulated gwRecharge" in line: 
 			year = int(line.split(" ")[11])
 			groundwater_recharge[year] = line.split(" ")[13]
-		
-		# identify annual runoff
-		if "Accumulated runoff" in line: 
-			year = int(line.split(" ")[11])
-			land_surface_runoff[year] = line.split(" ")[13]
-
-		# identify annual desalinated water abstraction
-		if "Accumulated desalinationAbstraction" in line:
-			year = int(line.split(" ")[11])
-			desalination_abstraction[year] = line.split(" ")[13]
-
-		# identify surface water abstraction
-		if "Accumulated actSurfaceWaterAbstract" in line:
-			year = int(line.split(" ")[11])
-			surface_water_abstraction[year] = line.split(" ")[13]
-
-		# identify annual non fossil groundwater abstraction
-		if "Accumulated nonFossilGroundwaterAbs" in line: 
-			year = int(line.split(" ")[11])
-			non_fossil_groundwater_abstraction[year] = line.split(" ")[13]
-		
-		# identify annual fossil groundwater abstraction
-		if "Accumulated unmetDemand" in line: 
-			year = int(line.split(" ")[11])
-			fossil_groundwater_abstraction[year] = line.split(" ")[13]
-
-		# identify annual irrigation emand
-		if "Accumulated irrGrossDemand" in line: 
-			year = int(line.split(" ")[11])
-			irrigation_demand[year] = line.split(" ")[13]
-
-		# identify annual non irrigation water demand
-		if "Accumulated nonIrrGrossDemand" in line:
-			year = int(line.split(" ")[11])
-			non_irrigation_demand[year] = line.split(" ")[13]
 
 		# identify total water demand
 		if "Accumulated totalPotentialGrossDemand" in line:
 			year = int(line.split(" ")[11])
 			total_water_demand[year] = line.split(" ")[13]
 
-		# identify groundwater recharge
-		if "Accumulated gwRecharge" in line:
+		# identify annual irrigation demand
+		if "Accumulated irrGrossDemand" in line: 
 			year = int(line.split(" ")[11])
-			groundwater_recharge[year] = line.split(" ")[13]
+			irrigation_demand[year] = line.split(" ")[13]
 
-		# identify irrigation water use
-		if "Accumulated irrigationWaterUse" in line:
+		# identify annual livestock demand
+		if "Accumulated livestockWaterWithdrawal" in line: 
 			year = int(line.split(" ")[11])
-			irrigation_water_use[year] = line.split(" ")[13]
+			livestock_demand[year] = line.split(" ")[13]
 
-		# identify non irrigation water use
-		if "Accumulated nonIrrigationWaterUse" in line:
+		# identify annual domestic demand
+		if "Accumulated domesticWaterWithdrawal" in line: 
 			year = int(line.split(" ")[11])
-			non_irrigation_water_use[year] = line.split(" ")[13]
+			domestic_demand[year] = line.split(" ")[13]
+
+		# identify annual industry demand
+		if "Accumulated industryWaterWithdrawal" in line: 
+			year = int(line.split(" ")[11])
+			industry_demand[year] = line.split(" ")[13]
+
+		# identify annual desalinated water abstraction
+		if "Accumulated desalinationAbstraction" in line:
+			year = int(line.split(" ")[11])
+			desalination_abstraction[year] = line.split(" ")[13]
+
+		# identify annual non fossil groundwater abstraction
+		if "Accumulated nonFossilGroundwaterAbs" in line: 
+			year = int(line.split(" ")[11])
+			non_fossil_groundwater_abstraction[year] = line.split(" ")[13]
+
+		# identify annual fossil groundwater abstraction
+		if "Accumulated unmetDemand" in line: 
+			year = int(line.split(" ")[11])
+			fossil_groundwater_abstraction[year] = line.split(" ")[13]
+
+		# identify surface water abstraction
+		if "Accumulated actSurfaceWaterAbstract" in line:
+			year = int(line.split(" ")[11])
+			surface_water_abstraction[year] = line.split(" ")[13]
 
 # save results in a txt file:
 #
