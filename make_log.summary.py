@@ -128,6 +128,7 @@ for var in variable_list:
 # 
 # - write values for every year
 years = np.sort(precipitation.keys())
+print years
 for year in years:
 	text = str(year)+";"
 	for var in variable_list:
