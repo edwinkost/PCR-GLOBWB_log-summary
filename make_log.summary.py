@@ -21,6 +21,7 @@ if len(sys.argv) > 2: txt_summary = sys.argv[2]
 # variables that will be reported
 variable_list = ['precipitation',\
                  'groundwater_recharge',\
+                 'baseflow',\
                  'total_water_demand',\
                  'irrigation_demand',\
                  'livestock_demand',\
@@ -33,8 +34,7 @@ variable_list = ['precipitation',\
                  ]
 
 # initiating dictionaries that will contain annual values
-# - the key for this dictionary is "year"
-# - all values have the unit km3/year
+# - the key for this dictionary is "year" ; all values have the unit km3/year
 for var in variable_list: vars()[str(var)] = {}
 
 # opening the log file and reading all lines 
@@ -56,57 +56,57 @@ for i in range(len(lines)):
 	if spinUpPeriod == False:
 
 		# identify year and annual precipitation
-		if "Accumulated precipitation" in line: 
+		if "Accumulated precipitation days" in line: 
 			year = int(line.split(" ")[11])
 			precipitation[year] = float(line.split(" ")[13])
 
+		# identify annual baseflow
+		if "Accumulated baseflow days" in line: 
+			year = int(line.split(" ")[11])
+			baseflow[year] = line.split(" ")[13]
+
 		# identify annual groundwater recharge
-		if "Accumulated gwRecharge" in line: 
+		if "Accumulated gwRecharge days" in line: 
 			year = int(line.split(" ")[11])
 			groundwater_recharge[year] = line.split(" ")[13]
 
 		# identify total water demand
-		if "Accumulated totalPotentialGrossDemand" in line:
+		if "Accumulated totalPotentialGrossDemand days" in line:
 			year = int(line.split(" ")[11])
 			total_water_demand[year] = line.split(" ")[13]
 
 		# identify annual irrigation demand
-		if "Accumulated irrGrossDemand" in line: 
+		if "Accumulated irrGrossDemand days" in line: 
 			year = int(line.split(" ")[11])
 			irrigation_demand[year] = line.split(" ")[13]
 
 		# identify annual livestock demand
-		if "Accumulated livestockWaterWithdrawal" in line: 
+		if "Accumulated livestockWaterWithdrawal days" in line: 
 			year = int(line.split(" ")[11])
 			livestock_demand[year] = line.split(" ")[13]
 
 		# identify annual domestic demand
-		if "Accumulated domesticWaterWithdrawal" in line: 
+		if "Accumulated domesticWaterWithdrawal days" in line: 
 			year = int(line.split(" ")[11])
 			domestic_demand[year] = line.split(" ")[13]
 
 		# identify annual industry demand
-		if "Accumulated industryWaterWithdrawal" in line: 
+		if "Accumulated industryWaterWithdrawal days" in line: 
 			year = int(line.split(" ")[11])
 			industry_demand[year] = line.split(" ")[13]
 
 		# identify annual desalinated water abstraction
-		if "Accumulated desalinationAbstraction" in line:
+		if "Accumulated desalinationAbstraction days" in line:
 			year = int(line.split(" ")[11])
 			desalination_abstraction[year] = line.split(" ")[13]
 
 		# identify annual non fossil groundwater abstraction
-		if "Accumulated nonFossilGroundwaterAbs" in line: 
+		if "Accumulated nonFossilGroundwaterAbs days" in line: 
 			year = int(line.split(" ")[11])
 			non_fossil_groundwater_abstraction[year] = line.split(" ")[13]
 
-		# identify annual fossil groundwater abstraction
-		if "Accumulated unmetDemand" in line: 
-			year = int(line.split(" ")[11])
-			fossil_groundwater_abstraction[year] = line.split(" ")[13]
-
 		# identify surface water abstraction
-		if "Accumulated actSurfaceWaterAbstract" in line:
+		if "Accumulated actSurfaceWaterAbstract days" in line:
 			year = int(line.split(" ")[11])
 			surface_water_abstraction[year] = line.split(" ")[13]
 
