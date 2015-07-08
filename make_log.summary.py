@@ -129,11 +129,12 @@ for var in variable_list:
 # - write values for every year
 years = np.sort(precipitation.keys())
 print years[0]
+print precipitation
 for year in years:
 	text = str(year)+";"
 	for var in variable_list:
 		# print var
-		value = vars()[str(var)][(year)]
+		value = vars()[str(var)][int(year)]
 		if var != variable_list[-1]: text += str(value)+";"
 		if var == variable_list[-1]:
 			text += str(value)+"\n"
