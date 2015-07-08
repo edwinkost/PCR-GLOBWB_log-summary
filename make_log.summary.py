@@ -59,16 +59,17 @@ for i in range(len(lines)):
 		if "Accumulated precipitation days" in line: 
 			year = int(line.split(" ")[11])
 			precipitation[year] = float(line.split(" ")[13])
-
-		# identify annual baseflow
-		if "Accumulated baseflow days" in line: 
-			year = int(line.split(" ")[11])
-			baseflow[year] = line.split(" ")[13]
+			print precipitation[year]
 
 		# identify annual groundwater recharge
 		if "Accumulated gwRecharge days" in line: 
 			year = int(line.split(" ")[11])
 			groundwater_recharge[year] = line.split(" ")[13]
+
+		# identify annual baseflow
+		if "Accumulated baseflow days" in line: 
+			year = int(line.split(" ")[11])
+			baseflow[year] = line.split(" ")[13]
 
 		# identify total water demand
 		if "Accumulated totalPotentialGrossDemand days" in line:
