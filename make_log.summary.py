@@ -60,6 +60,7 @@ for i in range(len(lines)):
 			year = int(line.split(" ")[11])
 			precipitation[year] = float(line.split(" ")[13])
 			print precipitation[year]
+			print year
 
 		# identify annual groundwater recharge
 		if "Accumulated gwRecharge days" in line: 
