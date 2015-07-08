@@ -105,6 +105,11 @@ for i in range(len(lines)):
 			year = int(line.split(" ")[11])
 			non_fossil_groundwater_abstraction[year] = line.split(" ")[13]
 
+		# identify fossil groundwater abstraction
+		if "Accumulated unmetDemand days" in line: 
+			year = int(line.split(" ")[11])
+			fossil_groundwater_abstraction[year] = line.split(" ")[13]
+
 		# identify surface water abstraction
 		if "Accumulated actSurfaceWaterAbstract days" in line:
 			year = int(line.split(" ")[11])
