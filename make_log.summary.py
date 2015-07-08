@@ -59,8 +59,6 @@ for i in range(len(lines)):
 		if "Accumulated precipitation days" in line: 
 			year = int(line.split(" ")[11])
 			precipitation[year] = float(line.split(" ")[13])
-			print precipitation[year]
-			print year
 
 		# identify annual groundwater recharge
 		if "Accumulated gwRecharge days" in line: 
@@ -128,12 +126,10 @@ for var in variable_list:
 # 
 # - write values for every year
 years = np.sort(precipitation.keys())
-print years[0]
-print precipitation
 for year in years:
 	text = str(year)+";"
 	for var in variable_list:
-		# print var
+		print var
 		value = vars()[str(var)][int(year)]
 		if var != variable_list[-1]: text += str(value)+";"
 		if var == variable_list[-1]:
