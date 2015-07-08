@@ -56,7 +56,7 @@ for i in range(len(lines)):
 	if spinUpPeriod == False:
 
 		# identify year and annual precipitation
-		if "Accumulated precipitation days" in line: 
+		if "Accumulated precipitation" in line: 
 			year = int(line.split(" ")[11])
 			precipitation[year] = float(line.split(" ")[13])
 			print precipitation[year]
