@@ -56,7 +56,7 @@ for i in range(len(lines)):
 	if spinUpPeriod == False:
 
 		# identify year and annual precipitation
-		if "Accumulated precipitation" in line: 
+		if "Accumulated precipitation days" in line: 
 			year = int(line.split(" ")[11])
 			precipitation[year] = float(line.split(" ")[13])
 			print precipitation[year]
@@ -133,7 +133,7 @@ for year in years:
 	text = str(year)+";"
 	for var in variable_list:
 		# print var
-		value = vars()[str(var)][int(year)]
+		value = vars()[str(var)][(year)]
 		if var != variable_list[-1]: text += str(value)+";"
 		if var == variable_list[-1]:
 			text += str(value)+"\n"
